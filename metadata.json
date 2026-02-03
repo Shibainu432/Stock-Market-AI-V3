@@ -1,5 +1,0 @@
-{
-  "name": "Real NeuralNet Stock Market Simulator V1.01",
-  "description": "A real-time stock market simulation featuring over 300 stocks and 100 AI investors with diverse, evolving neural network strategies. Built with React, TypeScript, and Tailwind CSS, this app offers a deep, dynamic view of market mechanics, including corporate actions and macroeconomic events. Optimized for modern browsers like Chrome and ready for deployment on platforms like GitHub Pages.",
-  "requestFramePermissions": []
-}
