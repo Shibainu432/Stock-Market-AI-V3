@@ -1,0 +1,193 @@
+import { NeuralNetwork } from './services/neuralNetwork.ts';
+
+export interface MicroLLM {
+    transitionTable: Record<string, Record<string, number>>;
+    order: number;
+}
+
+export interface TrackedGeneratedArticle {
+    eventId: string;
+    evaluationDay: number;
+    generatedText: string;
+    startingMarketIndex: number;
+    stockSymbol: string | null;
+    startingStockPrice: number | null;
+}
+
+export interface SimplePriceDataPoint {
+  day: number;
+  price: number;
+}
+
+export interface OHLCDataPoint {
+    day: number;
+    open: number;
+    high: number;
+    low: number;
+    close: number;
+    volume: number;
+}
+
+export interface CorporateAI {
+    nextCorporateActionDay: number;
+    splitNN: NeuralNetwork;
+    allianceNN: NeuralNetwork;
+    acquisitionNN: NeuralNetwork;
+    learningRate: number;
+}
+
+export type Region = 'North America' | 'Europe' | 'Asia' | 'Global';
+
+export interface Stock {
+  symbol: string;
+  name: string;
+  sector: string;
+  region: Region;
+  history: OHLCDataPoint[];
+  corporateAI?: CorporateAI;
+  isDelisted?: boolean;
+  sharesOutstanding: number;
+  eps?: number;
+  isETF?: boolean;
+  holdings?: { symbol: string; name: string; weight: number }[];
+}
+
+export interface ShareLot {
+  purchaseTime: string;
+  purchasePrice: number;
+  shares: number;
+  purchaseIndicators: Record<string, number>;
+}
+
+export interface PortfolioItem {
+  symbol: string;
+  lots: ShareLot[];
+}
+
+export interface InvestorStrategy {
+  strategyType: 'simple';
+  priceMomentumWeight: number;
+  volatilityWeight: number;
+  riskAversion: number;
+}
+
+export interface ComplexInvestorStrategy {
+    strategyType: 'complex';
+    weights: {
+        growth: number;
+        value: number;
+        trend: number;
+        safety: number;
+    };
+    riskAversion: number;
+    tradeFrequency: number;
+}
+
+export interface HyperComplexInvestorStrategy {
+    strategyType: 'hyperComplex';
+    network: NeuralNetwork;
+    riskAversion: number;
+    tradeFrequency: number;
+    learningRate: number;
+}
+
+export interface RandomInvestorStrategy {
+    strategyType: 'random';
+    tradeChance: number;
+}
+
+export interface PortfolioValueHistoryPoint {
+    day: number;
+    value: number;
+}
+
+export interface RecentTrade {
+    symbol: string;
+    day: number;
+    type: 'buy' | 'sell';
+    shares: number;
+    price: number;
+    indicatorValuesAtTrade: number[];
+    outcomeEvaluationDay: number;
+}
+
+export interface ActiveEvent {
+    id: string;
+    day: number;
+    stockSymbol: string | null;
+    stockName: string | null;
+    eventName: string;
+    description: string;
+    type: 'positive' | 'negative' | 'neutral' | 'split' | 'merger' | 'alliance' | 'political' | 'disaster';
+    impact?: number | Record<string, number>;
+    splitDetails?: { symbol: string, ratio: number };
+    mergerDetails?: { acquiring: string, acquired: string };
+    allianceDetails?: { partners: string[] };
+    imageUrl: string;
+    headline: string;
+    summary: string;
+    fullText: string;
+    region?: Region | 'Global';
+    visualKeywords?: string;
+}
+
+export type TaxJurisdiction = 'USA_WA' | 'USA_CA' | 'USA_TX' | 'DE' | 'JP' | 'GLOBAL';
+
+export interface Investor {
+  id: string;
+  name: string;
+  isHuman?: boolean;
+  region: Region;
+  strategyName?: string;
+  strategy: InvestorStrategy | ComplexInvestorStrategy | HyperComplexInvestorStrategy | RandomInvestorStrategy;
+  cash: number;
+  portfolio: PortfolioItem[];
+  portfolioHistory: PortfolioValueHistoryPoint[];
+  taxLossCarryforward: number;
+  totalTaxesPaid: number;
+  annualNetLTCG: number;
+  annualNetSTCG: number;
+  jurisdiction: TaxJurisdiction;
+  recentTrades: RecentTrade[];
+}
+
+export interface TrackedCorporateAction {
+    startDay: number;
+    evaluationDay: number;
+    stockSymbol: string;
+    actionType: 'split' | 'alliance' | 'acquisition';
+    indicatorValuesAtAction: number[];
+    startingStockPrice: number;
+    startingMarketIndex: number;
+}
+
+export interface SimulationState {
+  day: number;
+  time: string;
+  startDate: string;
+  stocks: Stock[];
+  investors: Investor[];
+  activeEvent: ActiveEvent | null;
+  eventHistory: ActiveEvent[];
+  marketIndexHistory: SimplePriceDataPoint[];
+  regionalIndexHistory: Record<Region, SimplePriceDataPoint[]>;
+  nextCorporateEventDay: number;
+  nextMacroEventDay: number;
+  trackedCorporateActions: TrackedCorporateAction[];
+  microLLM: MicroLLM;
+  trackedArticles: TrackedGeneratedArticle[];
+}
+
+export interface StockListData extends Stock {
+    price: number;
+    change: number;
+    changePercent: number;
+    volume: number;
+    marketCap: number;
+    peRatio: number;
+    high52w: number;
+    low52w: number;
+    trendingScore: number;
+}
+
+export type Page = 'home' | 'portfolio' | 'markets' | 'aii' | 'indexes';

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuralNet Stock Market Simulator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            background: '#000000',
+            'gray-900': '#121212',
+            'gray-800': '#1e1e1e',
+            'gray-700': '#2d2d2d',
+            'gray-600': '#4a4a4a',
+            'gray-400': '#9ca3af',
+            'gray-200': '#e5e7eb',
+            gain: '#22c55e',
+            loss: '#ef4444',
+            accent: '#3b82f6',
+          },
+        },
+      },
+    }
+    </script>
+    <style>
+      .skiptranslate { display: none !important; }
+      body { top: 0px !important; background-color: #000; color: #e5e7eb; margin: 0; }
+      #google_translate_element { display: flex; align-items: center; }
+      /* Scrollbar Styling */
+      ::-webkit-scrollbar { width: 6px; height: 6px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+      ::-webkit-scrollbar-thumb:hover { background: #444; }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^18.0.0",
+    "react-dom": "https://aistudiocdn.com/react-dom@^18.0.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^18.0.0/client",
+    "react/jsx-runtime": "https://aistudiocdn.com/react@^18.0.0/jsx-runtime",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.27.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "path": "https://esm.sh/path@^0.12.7",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
